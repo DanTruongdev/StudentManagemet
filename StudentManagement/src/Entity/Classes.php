@@ -7,47 +7,29 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ClassesRepository::class)
- */
+#[ORM\Entity(repositoryClass: ClassesRepository::class)]
 class Classes
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $subject;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private $totalLesson;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $grade;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $absent;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Student::class, mappedBy="classes")
-     */
+    #[ORM\ManyToMany(targetEntity: Student::class, mappedBy: 'classes')]
     private $students;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $lecturer;
 
     public function __construct()
     {
@@ -95,29 +77,6 @@ class Classes
         return $this;
     }
 
-    public function getGrade(): ?float
-    {
-        return $this->grade;
-    }
-
-    public function setGrade(float $grade): self
-    {
-        $this->grade = $grade;
-
-        return $this;
-    }
-
-    public function getAbsent(): ?float
-    {
-        return $this->absent;
-    }
-
-    public function setAbsent(float $absent): self
-    {
-        $this->absent = $absent;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Student>
@@ -142,6 +101,18 @@ class Classes
         if ($this->students->removeElement($student)) {
             $student->removeClass($this);
         }
+
+        return $this;
+    }
+
+    public function getLecturer(): ?string
+    {
+        return $this->lecturer;
+    }
+
+    public function setLecturer(string $lecturer): self
+    {
+        $this->lecturer = $lecturer;
 
         return $this;
     }

@@ -45,22 +45,27 @@ class ClassesRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Classes[] Returns an array of Classes objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Classes[] Returns an array of Classes objects
+     */
+    public function sortNameByAscending()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
             ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
+
+    /**
+     * @return Classes[] Returns an array of Classes objects
+     */
+    public function sortNameByDescending()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?Classes

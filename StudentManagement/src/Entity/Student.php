@@ -7,64 +7,39 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=StudentRepository::class)
- */
+#[ORM\Entity(repositoryClass: StudentRepository::class)]
 class Student
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $dob;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $address;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    private $image;
+
+    #[ORM\Column(type: 'date')]
+    private $dob;
+
+    #[ORM\Column(type: 'integer')]
     private $schoolYear;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $phone;
 
-    /**
-     * @ORM\OneToOne(targetEntity=StudentAccount::class, cascade={"persist", "remove"})
-     */
-    private $username;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Classes::class, inversedBy="students")
-     */
+    #[ORM\ManyToMany(targetEntity: Classes::class, inversedBy: 'students')]
     private $classes;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
 
     public function __construct()
     {
         $this->classes = new ArrayCollection();
     }
-
-
 
     public function getId(): ?int
     {
@@ -83,18 +58,6 @@ class Student
         return $this;
     }
 
-    public function getDob(): ?\DateTimeInterface
-    {
-        return $this->dob;
-    }
-
-    public function setDob(\DateTimeInterface $dob): self
-    {
-        $this->dob = $dob;
-
-        return $this;
-    }
-
     public function getAddress(): ?string
     {
         return $this->address;
@@ -103,6 +66,30 @@ class Student
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getDob(): ?\DateTimeInterface
+    {
+        return $this->dob;
+    }
+
+    public function setDob(\DateTimeInterface $dob): self
+    {
+        $this->dob = $dob;
 
         return $this;
     }
@@ -131,18 +118,6 @@ class Student
         return $this;
     }
 
-    public function getUsername(): ?StudentAccount
-    {
-        return $this->username;
-    }
-
-    public function setUsername(?StudentAccount $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Classes>
      */
@@ -163,18 +138,6 @@ class Student
     public function removeClass(Classes $class): self
     {
         $this->classes->removeElement($class);
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }

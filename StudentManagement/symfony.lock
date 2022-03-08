@@ -99,13 +99,7 @@
         "version": "v1.0.7"
     },
     "laminas/laminas-code": {
-        "version": "3.4.1"
-    },
-    "laminas/laminas-eventmanager": {
-        "version": "3.4.0"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.4.1"
+        "version": "4.5.1"
     },
     "monolog/monolog": {
         "version": "2.3.5"
@@ -167,19 +161,19 @@
         ]
     },
     "psr/cache": {
-        "version": "1.0.1"
+        "version": "2.0.0"
     },
     "psr/container": {
-        "version": "1.1.1"
+        "version": "1.1.2"
     },
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
     "psr/link": {
-        "version": "1.0.0"
+        "version": "1.1.1"
     },
     "psr/log": {
-        "version": "1.1.4"
+        "version": "2.0.0"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
@@ -287,7 +281,7 @@
         "version": "v5.4.6"
     },
     "symfony/deprecation-contracts": {
-        "version": "v2.5.0"
+        "version": "v3.0.0"
     },
     "symfony/doctrine-bridge": {
         "version": "v5.4.6"
@@ -305,7 +299,7 @@
         "version": "v5.4.3"
     },
     "symfony/event-dispatcher-contracts": {
-        "version": "v2.5.0"
+        "version": "v3.0.0"
     },
     "symfony/expression-language": {
         "version": "v5.4.3"
@@ -317,7 +311,7 @@
         "version": "v5.4.3"
     },
     "symfony/flex": {
-        "version": "1.18",
+        "version": "2.1",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
@@ -517,7 +511,7 @@
         "version": "v5.4.6"
     },
     "symfony/service-contracts": {
-        "version": "v2.5.0"
+        "version": "v2.4.1"
     },
     "symfony/stopwatch": {
         "version": "v5.4.5"

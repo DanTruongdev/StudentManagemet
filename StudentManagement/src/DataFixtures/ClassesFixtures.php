@@ -3,10 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Classes;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
-class ClassFixtures extends Fixture
+class ClassesFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -15,11 +15,9 @@ class ClassFixtures extends Fixture
             $class->setName("Class $i");
             $class->setSubject("Subject $i");
             $class->setTotalLesson(rand(40, 60));
-            $class->setGrade(rand(4, 10));
-            $class->setAbsent(rand(1, 25));
+            $class->setLecturer("Lecture $i");
             $manager->persist($class);
         }
-
         $manager->flush();
     }
 }
