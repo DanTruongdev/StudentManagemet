@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Classes;
+use App\Form\ClassesType;
 use App\Repository\ClassesRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,6 +35,40 @@ class ClassesController extends AbstractController
         ]);
     }
 
+    #[Route('/add', name: 'classes_add')]
+    public function studentAdd(Request $request)
+    {
+        $class = new Classes();
+        $form = $this->createForm(ClassesType::class, $class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($class);
+            $manager->flush();
+            return $this->redirectToRoute('student_index');
+        }
+        return $this->renderForm('classes/add.html.twig', [
+            'classesForm' => $form
+        ]);
+    }
+
+
+    #[Route('/edit/{id}', name: 'classes_edit')]
+    public function classesEdit(Request $request, $id)
+    {
+        $class = $this->getDoctrine()->getRepository(Classes::class)->find($id);
+        $form = $this->createForm(ClassesType::class, $class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($class);
+            $manager->flush();
+            return $this->redirectToRoute('classes_index');
+        }
+        return $this->renderForm('classes/add.html.twig', [
+            'classesForm' => $form
+        ]);
+    }
 
     #[Route('/delete/{id}', name: 'classes_delete')]
     public function classesDelete($id)

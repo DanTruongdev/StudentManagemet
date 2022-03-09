@@ -31,6 +31,10 @@
                 <h5>Address: {{student.address}}</h5>
                 <h5>Phone: {{student.phone}}</h5>
                 <h5>School Year: {{student.schoolYear}}</h5>  
+                <h5>Classes:</h5>
+                {% for c in student.classes %}
+                    <h6>{{c.name}}</h6>
+                {% endfor %}
             </div>
 
         </div>

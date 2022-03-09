@@ -1,3 +1,4 @@
+
 {% extends "base.html.twig" %}
 
 {% block title %}{{class.name}}{% endblock %}
@@ -35,7 +36,14 @@
             <th class="text text-success">Lecturer</th>
             <td>{{class.lecturer}}</td>
         </tr>  
+        <tr>
+            <th class="text text-success">Students:</th>
+            <td>
+            {% for s in class.students %}
+            {{s.name}},
+            {% endfor %}
+            </td>
+        </tr>
     </tbody>
 </table>
-
 {% endblock %}

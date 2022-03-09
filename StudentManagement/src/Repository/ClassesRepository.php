@@ -51,7 +51,7 @@ class ClassesRepository extends ServiceEntityRepository
     public function sortNameByAscending()
     {
         return $this->createQueryBuilder('c')
-            ->orderBy('c.id', 'ASC')
+            ->orderBy('c.name', 'ASC')
             ->getQuery()
             ->getResult();
     }
@@ -62,7 +62,7 @@ class ClassesRepository extends ServiceEntityRepository
     public function sortNameByDescending()
     {
         return $this->createQueryBuilder('c')
-            ->orderBy('c.id', 'DESC')
+            ->orderBy('c.name', 'DESC')
             ->getQuery()
             ->getResult();
     }

@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Student;
+use App\Form\StudentType;
 use App\Repository\StudentRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/student')]
 class StudentController extends AbstractController
@@ -19,6 +21,7 @@ class StudentController extends AbstractController
             'students' => $students,
         ]);
     }
+
     #[Route('/detail/{id}', name: 'student_detail')]
     public function studentDetail($id)
     {
@@ -32,6 +35,39 @@ class StudentController extends AbstractController
         ]);
     }
 
+    #[Route('/add', name: 'student_add')]
+    public function studentAdd(Request $request)
+    {
+        $student = new Student();
+        $form = $this->createForm(StudentType::class, $student);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($student);
+            $manager->flush();
+            return $this->redirectToRoute('student_index');
+        }
+        return $this->renderForm('student/add.html.twig', [
+            'studentForm' => $form
+        ]);
+    }
+
+    #[Route('/edit/{id}', name: 'student_edit')]
+    public function studentEdit(Request $request, $id)
+    {
+        $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
+        $form = $this->createForm(StudentType::class, $student);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($student);
+            $manager->flush();
+            return $this->redirectToRoute('student_index');
+        }
+        return $this->renderForm('student/edit.html.twig', [
+            'studentForm' => $form
+        ]);
+    }
 
     #[Route('/delete/{id}', name: 'student_delete')]
     public function studentDelete($id)
