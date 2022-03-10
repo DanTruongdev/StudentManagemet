@@ -49,7 +49,7 @@ class ClassesType extends AbstractType
                 'class' => Student::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => false
             ])
             ->add('Submit', SubmitType::class);
     }

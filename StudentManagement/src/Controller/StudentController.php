@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 #[Route('/student')]
 class StudentController extends AbstractController
 {
-    #[Route('/', name: 'student_index')]
+    #[Route('/home', name: 'student_index')]
     public function studentIndex()
     {
         $students = $this->getDoctrine()->getRepository(Student::class)->findAll();

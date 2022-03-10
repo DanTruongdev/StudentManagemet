@@ -55,7 +55,7 @@ class StudentType extends AbstractType
                 'class' => Classes::class,
                 'choice_label' => 'name',
                 'multiple' => true, // required.
-                'expanded' => true
+                'expanded' => false
             ])
             ->add('Submit', SubmitType::class);
     }
